@@ -18,31 +18,27 @@ def time_count_wrapper(func):
     return time_count
 
 
-@time_count_wrapper
-def paddle_cut(data):
-    seg_list = jieba.cut(data, use_paddle=True)
-    return list(seg_list)
+# @time_count_wrapper
+# def paddle_cut(data):
+#     seg_list = jieba.cut(data, use_paddle=True)
+#     return list(seg_list)
 
 
-@time_count_wrapper
 def search_cut(data):
     seg_list = jieba.cut_for_search(data)
     return list(seg_list)
 
 
-@time_count_wrapper
 def full_cut(data):
     seg_list = jieba.cut(data, cut_all=True)
     return list(seg_list)
 
 
-@time_count_wrapper
 def correct_cut(data):
     seg_list = jieba.cut(data, cut_all=False)
     return list(seg_list)
 
 
-@time_count_wrapper
 def tfidf_cut(data):
     seg_list = jieba.analyse.extract_tags(data, topK=5, withWeight=True)
     return seg_list
@@ -54,11 +50,11 @@ def main():
         print("full: ", full_cut(data))
         print("correct: ", correct_cut(data))
         print("search: ", search_cut(data))
-        print("paddle: ", paddle_cut(data))
+        # print("paddle: ", paddle_cut(data))
         print("TFIDF: ", tfidf_cut(data))
 
 
 if __name__ == '__main__':
-    jieba.enable_paddle()
+    # jieba.enable_paddle()
     main()
 
